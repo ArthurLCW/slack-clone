@@ -8,13 +8,16 @@ import CallEndIcon from '@material-ui/icons/CallEnd'
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined'
 import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import SearchIcon from '@material-ui/icons/Search'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import CloseIcon from '@material-ui/icons/Close'
 import Message from '../../components/message/Message'
 import { CometChat } from '@cometchat-pro/chat'
 import { cometChat } from '../../app.config'
-import { Avatar, Button } from '@material-ui/core'
+import { Avatar, Button, Icon, SvgIcon } from '@material-ui/core'
+import Picker from 'emoji-picker-react';
+
 
 function User() {
   const { id } = useParams()
@@ -31,6 +34,13 @@ function User() {
   const [isIncomingCall, setIsIncomingCall] = useState(false)
   const [isOutgoingCall, setIsOutgoingCall] = useState(false)
   const [isLive, setIsLive] = useState(false)
+  // try add emojis
+  const [showPicker, setShowPicker] = useState(false)
+
+  const onEmojiClick = ( emojiObject, event) => {
+    setMessage(message + emojiObject.emoji)
+    setShowPicker(false)
+  }
 
   const togglerDetail = () => {
     setToggle(!toggle)
@@ -203,6 +213,7 @@ function User() {
   const onSubmit = (e) => {
     e.preventDefault()
     sendMessage(id, message)
+    console.log("OnSubmit!!!, message: ",message)
   }
 
   const sendMessage = (uid, message) => {
@@ -220,6 +231,8 @@ function User() {
         setMessages((prevState) => [...prevState, message])
         setMessage('')
         scrollToEnd()
+        console.log("message: ",message)
+        console.log("textMessage: ", textMessage)
       })
       .catch((error) =>
         console.log('Message sending failed with error:', error)
@@ -432,8 +445,27 @@ function User() {
             </button>
           </form>
         </div>
+
+        {/* Try add emoji here */}
+        <div>
+          <button onClick={() => {
+            setShowPicker(!showPicker)
+            console.log("Show picker state: ", showPicker)  
+          }}>
+            <SvgIcon component={EmojiEmotionsIcon} />
+          </button>
+
+          <div className='emoji__picker'>
+            {showPicker && <Picker onEmojiClick={onEmojiClick}/>}
+          </div>
+          
+          
+        </div>
+
+
       </div>
 
+      {/* hidden details, not shown for now */}
       <div className={`user__details ${!toggle ? 'hide__details' : ''}`}>
         <div className="user__header">
           <div className="user__headerLeft">

@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "dateformat": "^4.0.0",
     "emoji-mart": "^3.0.0",
+    "emoji-picker-react": "^4.4.7",
     "firebase": "^8.5.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",

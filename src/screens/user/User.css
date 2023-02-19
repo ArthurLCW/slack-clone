@@ -345,6 +345,13 @@
   left: 0px;
   top: 0px;
 }
+
+.emoji__picker{
+  position: relative;
+  top: -500px;
+}
+
+
 @keyframes play {
   0% {
     transform: scale(1);
