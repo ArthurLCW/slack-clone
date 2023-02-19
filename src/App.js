@@ -31,6 +31,7 @@ function App() {
     )
   }
 
+  // add structure if auth; otherwise redirect to login. 
   const GuardedRoute = ({ component: Component, auth, ...rest }) => (
     <Route
       {...rest}
@@ -46,6 +47,7 @@ function App() {
     />
   )
 
+  // following useEffect only activates once
   useEffect(() => {
     const data = localStorage.getItem('user')
     if (data) {

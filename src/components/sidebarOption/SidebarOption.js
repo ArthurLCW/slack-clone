@@ -9,9 +9,11 @@ function SidebarOption({
   addChannelOption,
   user,
   online,
+  onClickHandler,
 }) {
   const history = useHistory()
   const selectChannel = () => {
+    // console.log("select channel.")
     if (id) {
       if (user) {
         history.push(`/users/${id}`)
@@ -21,9 +23,14 @@ function SidebarOption({
     } else {
       history.push(title)
     }
+
+    if (onClickHandler) {
+      onClickHandler()
+    }
   }
 
   const addChannel = () => {
+    // console.log("add channel.")
     history.push('/add/channel')
   }
 

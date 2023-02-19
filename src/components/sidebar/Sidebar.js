@@ -8,6 +8,7 @@ import InsertCommentIcon from '@material-ui/icons/InsertComment'
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import AddIcon from '@material-ui/icons/Add'
 import { CometChat } from '@cometchat-pro/chat'
@@ -17,18 +18,23 @@ function Sidebar() {
   const [channels, setChannels] = useState([])
   const [user, setUser] = useState(null)
   const [dms, setDms] = useState([])
+  const [channelExpanded, setChannelExpanded] = useState(true)
+  const [userMsgExpanded, setUserMsgExpanded] = useState(true)
   const history = useHistory()
 
   const getDirectMessages = () => {
     const limit = 10
     const usersRequest = new CometChat.UsersRequestBuilder()
       .setLimit(limit)
-      .friendsOnly(true)
+      // .friendsOnly(true)
       .build()
 
     usersRequest
       .fetchNext()
-      .then((userList) => setDms(userList))
+      .then((userList) => {
+        setDms(userList)
+        console.log("userList obtained: ", userList)
+      })
       .catch((error) => {
         console.log('User list fetching failed with error:', error)
       })
@@ -86,9 +92,14 @@ function Sidebar() {
         <SidebarOption Icon={AlternateEmailIcon} title="Mentions & Reactions" />
         <SidebarOption Icon={MoreVertIcon} title="More" />
         <hr />
-        <SidebarOption Icon={ArrowDropDownIcon} title="Channels" />
+        <SidebarOption Icon={channelExpanded? ArrowDropDownIcon : ArrowRightIcon} 
+          title="Channels" 
+          onClickHandler = {() => {
+            setChannelExpanded(!channelExpanded)
+            console.log("channel: i am clicked. my state is: ", channelExpanded)
+          }}/>
         <hr />
-        {channels.map((channel) =>
+        {channelExpanded? channels.map((channel) =>
           channel.type === 'private' ? (
             <SidebarOption
               Icon={LockOutlinedIcon}
@@ -105,7 +116,7 @@ function Sidebar() {
               sub="sidebarOption__sub"
             />
           )
-        )}
+        ) : null}
 
         <SidebarOption
           Icon={AddIcon}
@@ -114,9 +125,16 @@ function Sidebar() {
           addChannelOption
         />
         <hr />
-        <SidebarOption Icon={ArrowDropDownIcon} title="Direct Messages" />
+
+        <SidebarOption Icon={userMsgExpanded? ArrowDropDownIcon : ArrowRightIcon} 
+          title="Direct Messages" 
+          onClickHandler = {() => {
+            setUserMsgExpanded(!userMsgExpanded)
+            console.log("user msg: i am clicked. my state is: ", userMsgExpanded)
+          }}/>
+
         <hr />
-        {dms.map((dm) => (
+        {userMsgExpanded? dms.map((dm) => (
           <SidebarOption
             Icon={FiberManualRecordIcon}
             title={dm.name}
@@ -126,7 +144,7 @@ function Sidebar() {
             user
             online={dm.status === 'online' ? 'isOnline' : ''}
           />
-        ))}
+        )) : null}
       </div>
 
       <button className="sidebar__logout" onClick={logOut}>
