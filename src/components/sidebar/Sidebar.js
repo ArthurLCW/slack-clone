@@ -94,7 +94,7 @@ function Sidebar() {
         <hr />
         <SidebarOption Icon={channelExpanded? ArrowDropDownIcon : ArrowRightIcon} 
           title="Channels" 
-          onClickHandler = {() => {
+          expandHandler = {() => {
             setChannelExpanded(!channelExpanded)
             console.log("channel: i am clicked. my state is: ", channelExpanded)
           }}/>
@@ -128,7 +128,7 @@ function Sidebar() {
 
         <SidebarOption Icon={userMsgExpanded? ArrowDropDownIcon : ArrowRightIcon} 
           title="Direct Messages" 
-          onClickHandler = {() => {
+          expandHandler = {() => {
             setUserMsgExpanded(!userMsgExpanded)
             console.log("user msg: i am clicked. my state is: ", userMsgExpanded)
           }}/>

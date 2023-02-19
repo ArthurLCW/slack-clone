@@ -9,7 +9,7 @@ function SidebarOption({
   addChannelOption,
   user,
   online,
-  onClickHandler,
+  expandHandler,
 }) {
   const history = useHistory()
   const selectChannel = () => {
@@ -24,8 +24,8 @@ function SidebarOption({
       history.push(title)
     }
 
-    if (onClickHandler) {
-      onClickHandler()
+    if (expandHandler) {
+      expandHandler()
     }
   }
 
