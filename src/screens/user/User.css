@@ -72,7 +72,7 @@
 
 .user__chatInput > form {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .user__chatInput > form > input {
@@ -344,6 +344,18 @@
   position: absolute;
   left: 0px;
   top: 0px;
+}
+
+.user__chat__function{
+  display: flex;
+
+  gap: 10px;
+  /* justify-content: center; */
+  width: 90%;
+  /* border: 1px solid gray; */
+  /* border-radius: 3px; */
+  /* padding: 20px; */
+  margin: 0px 0px 0px 10px;
 }
 
 .emoji__picker{

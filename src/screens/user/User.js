@@ -444,22 +444,24 @@ function User() {
               SEND
             </button>
           </form>
+
+          <div className='user__chat__function'>
+            <SvgIcon component={EmojiEmotionsIcon} onClick={() => {
+              setShowPicker(!showPicker)
+              console.log("Show picker state: ", showPicker)  
+            }}/>
+
+            <SvgIcon component={EmojiEmotionsIcon} onClick={() => {
+              setShowPicker(!showPicker)
+              console.log("Show picker state: ", showPicker)  
+            }}/>
+          </div>
+
         </div>
 
         {/* Try add emoji here */}
-        <div>
-          <button onClick={() => {
-            setShowPicker(!showPicker)
-            console.log("Show picker state: ", showPicker)  
-          }}>
-            <SvgIcon component={EmojiEmotionsIcon} />
-          </button>
-
-          <div className='emoji__picker'>
+        <div className='emoji__picker'>
             {showPicker && <Picker onEmojiClick={onEmojiClick}/>}
-          </div>
-          
-          
         </div>
 
 

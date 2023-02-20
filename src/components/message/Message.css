@@ -1,4 +1,5 @@
 .message {
+  position: relative;
   display: flex;
   align-items: center;
   margin: 10px 0;
@@ -53,4 +54,30 @@
 .message__actions .MuiSvgIcon-root {
   margin-right: 10px;
   cursor: pointer;
+}
+
+.chat__toolbar{
+  position: relative;
+  right: -100px;
+}
+
+.emoji__picker__msg{
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  z-index: 99;
+}
+
+.reaction__bar{
+  display: block;
+  position: relative;
+  left: 20px;
+}
+
+.reaction{
+  background-color:azure;
+  display: inline;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin-right: 5px;
 }
