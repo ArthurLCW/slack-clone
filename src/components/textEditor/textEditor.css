@@ -1,0 +1,43 @@
+.user__chat__function{
+  display: flex;
+  gap: 10px;
+  /* justify-content: center; */
+  width: 90%;
+  /* border: 1px solid gray; */
+  /* border-radius: 3px; */
+  /* padding: 20px; */
+  margin: 0px 0px 0px 10px;
+}
+
+.user__chatInput {
+  border-radius: 20px;
+}
+
+.user__chatInput > form {
+  display: flex;
+  /* justify-content: center; */
+}
+
+.user__chatInput > form > input {
+  width: 90%;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.user__chatInput > form > input:focus {
+  outline: none;
+}
+
+.user__chatInput > form > button {
+  display: none !important;
+}
+
+.rich_editor{
+  width: 90%;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 20px;
+  margin: 10px;
+}

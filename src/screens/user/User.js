@@ -13,6 +13,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import CloseIcon from '@material-ui/icons/Close'
 import Message from '../../components/message/Message'
+import TextEditor from '../../components/textEditor/textEditor'
 import { CometChat } from '@cometchat-pro/chat'
 import { cometChat } from '../../app.config'
 import { Avatar, Button, Icon, SvgIcon } from '@material-ui/core'
@@ -36,6 +37,8 @@ function User() {
   const [isLive, setIsLive] = useState(false)
   // try add emojis
   const [showPicker, setShowPicker] = useState(false)
+  // const messageInputRef = useRef(null);
+
 
   const onEmojiClick = ( emojiObject, event) => {
     setMessage(message + emojiObject.emoji)
@@ -86,6 +89,7 @@ function User() {
     const messagesRequest = new CometChat.MessagesRequestBuilder()
       .setLimit(limit)
       .setUID(uid)
+      .hideDeletedMessages(true)
       .build()
 
     messagesRequest
@@ -230,6 +234,7 @@ function User() {
       .then((message) => {
         setMessages((prevState) => [...prevState, message])
         setMessage('')
+        // messageInputRef.current.clearMessage()
         scrollToEnd()
         console.log("message: ",message)
         console.log("textMessage: ", textMessage)
@@ -434,37 +439,16 @@ function User() {
         </div>
 
         <div className="user__chatInput">
-          <form>
-            <input
-              placeholder={`Message ${user?.name.toLowerCase()}`}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <button type="submit" onClick={(e) => onSubmit(e)}>
-              SEND
-            </button>
-          </form>
-
-          <div className='user__chat__function'>
-            <SvgIcon component={EmojiEmotionsIcon} onClick={() => {
-              setShowPicker(!showPicker)
-              console.log("Show picker state: ", showPicker)  
-            }}/>
-
-            <SvgIcon component={EmojiEmotionsIcon} onClick={() => {
-              setShowPicker(!showPicker)
-              console.log("Show picker state: ", showPicker)  
-            }}/>
-          </div>
-
+          <TextEditor user={user} message={message} 
+            setMessage={setMessage} onSubmit={onSubmit} 
+            showPicker={showPicker} setShowPicker={setShowPicker}
+          />
         </div>
 
         {/* Try add emoji here */}
-        <div className='emoji__picker'>
-            {showPicker && <Picker onEmojiClick={onEmojiClick}/>}
-        </div>
-
-
+        {/* <div className='emoji__picker'>
+          {showPicker && <Picker onEmojiClick={onEmojiClick}/>}
+        </div> */}
       </div>
 
       {/* hidden details, not shown for now */}

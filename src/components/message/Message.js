@@ -29,17 +29,17 @@ function Message({ uid, name, avatar, message, timestamp }) {
   }
 
   const onEmojiClick = ( emojiObject, event) => {
-    console.log("prev reactions: ", reactions)
-    console.log("current emoji: ",emojiObject.emoji)
+    // console.log("prev reactions: ", reactions)
+    // console.log("current emoji: ",emojiObject.emoji)
     setReactions([...reactions, emojiObject.emoji])
     setShowPicker(false)
-    console.log("cur reactions: ", reactions)
+    // console.log("cur reactions: ", reactions)
   }
 
   // Moment.globalTimezone = 'America/Los_Angeles'
 
   function ChatWidget() {
-    console.log("Widget activated.")
+    // console.log("Widget activated.")
     return (
       <div className='chat__toolbar'>
         <SvgIcon component={EmojiEmotionsIcon} onClick={()=>{
@@ -59,7 +59,7 @@ function Message({ uid, name, avatar, message, timestamp }) {
   }, [])
 
   const ReactionBar= () => {
-    console.log("reaction pairs: ", reactionsPairs)
+    // console.log("reaction pairs: ", reactionsPairs)
     return (
       <div className='reaction__bar'>{
         Object.keys(reactionsPairs).map((reaction) => {

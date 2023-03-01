@@ -38,3 +38,19 @@
 .isOnline > .MuiSvgIcon-root {
   color: green;
 }
+
+.direct__message__user{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+	justify-content: center;
+  gap: 5px;
+}
+
+.direct__message__user .icon{
+  z-index: 666;
+  position: absolute;
+  left: 15px;
+  bottom: -10px;
+}

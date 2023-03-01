@@ -1,5 +1,6 @@
 import './SidebarOption.css'
 import { useHistory } from 'react-router-dom'
+import { Avatar } from '@material-ui/core'
 
 function SidebarOption({
   Icon,
@@ -8,6 +9,7 @@ function SidebarOption({
   id,
   addChannelOption,
   user,
+  avatar,
   online,
   expandHandler,
 }) {
@@ -39,14 +41,39 @@ function SidebarOption({
       className={`sidebarOption ${online} ${sub}`}
       onClick={addChannelOption ? addChannel : selectChannel}
     >
-      {Icon && <Icon className="sidebarOption__icon" />}
+
+      {avatar ? (
+        <div className='direct__message__user'>
+          <div className='icon'>
+            {Icon && <Icon className="sidebarOption__icon" />}
+          </div>
+          {avatar && <Avatar src={avatar} />}
+          <h3>{title}</h3>
+        </div>
+      ) : (
+        <>
+        {Icon && <Icon className="sidebarOption__icon" />}
+        {Icon ? (
+            <h3>{title}</h3>
+        ) : (
+          <h3 className="sidebarOption__channel">
+            <span className="sidebarOption__hash">#</span> {title}
+          </h3>
+        )}</>
+      )}
+
+
+      {/* {Icon && <Icon className="sidebarOption__icon" />}
       {Icon ? (
-        <h3>{title}</h3>
+        <>
+          {avatar && <Avatar src={avatar} />}
+          <h3>{title}</h3>
+        </>
       ) : (
         <h3 className="sidebarOption__channel">
           <span className="sidebarOption__hash">#</span> {title}
         </h3>
-      )}
+      )} */}
     </div>
   )
 }
